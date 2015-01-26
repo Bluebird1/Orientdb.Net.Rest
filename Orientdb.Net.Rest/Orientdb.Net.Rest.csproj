@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E489185-4E6C-43A8-A444-104BCB43AA73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orientdb.Net</RootNamespace>
+    <AssemblyName>Orientdb.Net.Rest</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Attributes\OrientdbProperty.cs" />
+    <Compile Include="API\Classes\Parameter\CreateClassRequestParameters.cs" />
+    <Compile Include="API\Database\ClassIndex.cs" />
+    <Compile Include="API\Database\ClassProperty.cs" />
+    <Compile Include="API\Database\OrienClass.cs" />
+    <Compile Include="API\Database\OrienCluster.cs" />
+    <Compile Include="API\Database\OrientServer.cs" />
+    <Compile Include="API\Database\Response\ListDatabaseResponse.cs" />
+    <Compile Include="API\Document\OrientLinkBag.cs" />
+    <Compile Include="API\OrientDbClient-Classes.cs" />
+    <Compile Include="API\OrientDbClient-Command.cs" />
+    <Compile Include="API\OrientDbClient-Database.cs" />
+    <Compile Include="API\OrientDbClient-Query.cs" />
+    <Compile Include="API\OrientDbClient-Server.cs" />
+    <Compile Include="API\OrientDbClient-Vertex.cs" />
+    <Compile Include="API\Server\OrienConnection.cs" />
+    <Compile Include="API\Server\Storage.cs" />
+    <Compile Include="ConnectionPool\Definition\IConnectionPool.cs" />
+    <Compile Include="ConnectionPool\EndpointState.cs" />
+    <Compile Include="ConnectionPool\SingleNodeConnectionPool.cs" />
+    <Compile Include="ConnectionPool\SniffingConnectionPool.cs" />
+    <Compile Include="ConnectionPool\StaticConnectionPool.cs" />
+    <Compile Include="Connection\Configuration\ConnectionConfiguration.cs" />
+    <Compile Include="Connection\Configuration\Definition\IConnectionConfiguration.cs" />
+    <Compile Include="Connection\Configuration\Definition\IConnectionConfigurationValues.cs" />
+    <Compile Include="Connection\Configuration\Definition\IRequestConfiguration.cs" />
+    <Compile Include="Connection\Configuration\RequestConfiguration.cs" />
+    <Compile Include="Connection\Configuration\RequestConfigurationDescriptor.cs" />
+    <Compile Include="Connection\Definition\IConnection.cs" />
+    <Compile Include="Connection\HttpConnection.cs" />
+    <Compile Include="Connection\InMemoryConnection.cs" />
+    <Compile Include="Connection\RequestHandlers\RequestHandler.cs" />
+    <Compile Include="Connection\RequestHandlers\RequestHandlerAsync.cs" />
+    <Compile Include="Connection\RequestHandlers\RequestHandlerBase.cs" />
+    <Compile Include="Connection\RequestState\Definition\IRequestTimings.cs" />
+    <Compile Include="Connection\RequestState\Definition\ITransportRequestState.cs" />
+    <Compile Include="Connection\RequestState\RequestTimings.cs" />
+    <Compile Include="Connection\RequestState\TransportRequestState.cs" />
+    <Compile Include="Connection\Security\BasicAuthorizationCredentials.cs" />
+    <Compile Include="Connection\Transport\Definition\ITransport.cs" />
+    <Compile Include="Connection\Transport\Definition\ITransportDelegator.cs" />
+    <Compile Include="Connection\RequestState\NoopRequestTimings.cs" />
+    <Compile Include="Connection\Transport\Transport.cs" />
+    <Compile Include="Converters\ForceStringReader.cs" />
+    <Compile Include="Converters\OridConverter.cs" />
+    <Compile Include="Converters\OrientLinkBagConverter.cs" />
+    <Compile Include="Converters\ReadAsTypeConverter.cs" />
+    <Compile Include="Domain\Enum\Bytes.cs" />
+    <Compile Include="Domain\Enum\ClusterStateMetric.cs" />
+    <Compile Include="Domain\Enum\Consistency.cs" />
+    <Compile Include="Domain\Enum\DefaultOperator.cs" />
+    <Compile Include="Domain\Enum\ExpandWildcards.cs" />
+    <Compile Include="Domain\Enum\Format.cs" />
+    <Compile Include="Domain\Enum\IndicesStatsMetric.cs" />
+    <Compile Include="Domain\IHideObjectMembers.cs" />
+    <Compile Include="Domain\KnownEnums.cs" />
+    <Compile Include="Domain\Enum\Level.cs" />
+    <Compile Include="Domain\Enum\NodesInfoMetric.cs" />
+    <Compile Include="Domain\Enum\NodesStatsIndexMetric.cs" />
+    <Compile Include="Domain\Enum\NodesStatsMetric.cs" />
+    <Compile Include="Domain\Enum\OpType.cs" />
+    <Compile Include="Domain\Enum\PercolateFormat.cs" />
+    <Compile Include="Domain\Enum\Replication.cs" />
+    <Compile Include="Domain\Enum\SearchType.cs" />
+    <Compile Include="Domain\Enum\SuggestMode.cs" />
+    <Compile Include="Domain\Enum\ThreadType.cs" />
+    <Compile Include="Domain\Enum\VersionType.cs" />
+    <Compile Include="Domain\Enum\WaitForStatus.cs" />
+    <Compile Include="Domain\RequestParameters\Definition\IRequestParameters.cs" />
+    <Compile Include="Domain\RequestParameters\FluentRequestParameters.cs" />
+    <Compile Include="Domain\RequestParameters\RequestParameters.cs" />
+    <Compile Include="Domain\RequestType.cs" />
+    <Compile Include="Domain\Response\BaseResponse.cs" />
+    <Compile Include="Domain\Response\CallMetrics.cs" />
+    <Compile Include="Domain\Response\Definition\IOrientdbResponse.cs" />
+    <Compile Include="Domain\Response\Definition\IResponse.cs" />
+    <Compile Include="Domain\Response\DynamicDictionary.cs" />
+    <Compile Include="Domain\Response\OrientdbServerError.cs" />
+    <Compile Include="Domain\Response\OrientdbResponse.cs" />
+    <Compile Include="Domain\Response\OrintdbDynamicValue.cs" />
+    <Compile Include="Domain\Response\RequestMetrics.cs" />
+    <Compile Include="Domain\Response\VoidResponse.cs" />
+    <Compile Include="API\Command\CommandLanguage.cs" />
+    <Compile Include="Exceptions\OrientdbAuthenticationException.cs" />
+    <Compile Include="Exceptions\MaxRetryException.cs" />
+    <Compile Include="Exceptions\OrientdbServerException.cs" />
+    <Compile Include="Exceptions\OneToOneServerException.cs" />
+    <Compile Include="Exceptions\PingException.cs" />
+    <Compile Include="Extensions\PropertyInfoExtension.cs" />
+    <Compile Include="Exceptions\SniffException.cs" />
+    <Compile Include="Extensions\DateExtensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\NameValueCollectionExtensions.cs" />
+    <Compile Include="IOrientdbClient.cs" />
+    <Compile Include="Mapping\ICustomJsonReader.cs" />
+    <Compile Include="API\Classes\Response\ClassPropertiesResponse.cs" />
+    <Compile Include="API\Command\Response\CommandResponse.cs" />
+    <Compile Include="API\Database\OrienUser.cs" />
+    <Compile Include="API\Database\Response\DatabasePropertiesResponse.cs" />
+    <Compile Include="API\Document\BaseResult.cs" />
+    <Compile Include="API\Document\ODocument.cs" />
+    <Compile Include="API\Document\ORID.cs" />
+    <Compile Include="API\Database\Response\CreateDatabaseResponse.cs" />
+    <Compile Include="API\Server\Response\ServerPropertiesResponse.cs" />
+    <Compile Include="API\Server\ServerProperties.cs" />
+    <Compile Include="API\Server\StorageType.cs" />
+    <Compile Include="OrientdbClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\DateTimeProvider.cs" />
+    <Compile Include="Providers\Definition\IDateTimeProvider.cs" />
+    <Compile Include="Providers\Definition\IMemoryStreamProvider.cs" />
+    <Compile Include="Providers\MemoryStreamProvider.cs" />
+    <Compile Include="Providers\Sniffer.cs" />
+    <Compile Include="Purify\Definition\IPurifier.cs" />
+    <Compile Include="Purify\Purifier.cs" />
+    <Compile Include="Purify\PurifierDotNet.cs" />
+    <Compile Include="Purify\PurifierMono.cs" />
+    <Compile Include="Purify\UriInfo.cs" />
+    <Compile Include="Resolvers\JsonConverterPiggyBackState.cs" />
+    <Compile Include="Resolvers\OrientdbContractResolver.cs" />
+    <Compile Include="Resolvers\SettingsContractResolver.cs" />
+    <Compile Include="Serialization\OrientdbSerializer.cs" />
+    <Compile Include="Serialization\OrientdbDefaultSerializer.cs" />
+    <Compile Include="Serialization\Definition\IOrientdbSerializer.cs" />
+    <Compile Include="Serialization\SerializationFormatting.cs" />
+    <Compile Include="Serialization\SimpleJson.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="API\Command\Parameter\" />
+    <Folder Include="API\Database\Parameter\" />
+    <Folder Include="API\Query\Parameter\" />
+    <Folder Include="API\Query\Response\" />
+    <Folder Include="API\Server\Parameter\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
