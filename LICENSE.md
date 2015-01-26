@@ -1,8 +1,8 @@
 The MIT X11 License covers the Orientdb.Net.Rest project. Some third party libraries might come from different projects, and are licensed under their own terms.
 
-Copyright (c) [2015 - present] Marco Süß, [http://Bluebird1.github.com/](http://Bluebird1.github.com/)
+Copyright (c) [2015 - present] Marco S&uuml;&szlig;
 
-Copyright (c) 2015 Workshare
+Copyright (c) 2015 Leipzig, Germany
  
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
