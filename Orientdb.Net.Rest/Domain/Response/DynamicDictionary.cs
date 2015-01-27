@@ -63,7 +63,7 @@ namespace Orientdb.Net
         {
             if (!dictionary.TryGetValue(binder.Name, out result))
             {
-                result = new OrintdbDynamicValue(null);
+                result = new OrientdbDynamicValue(null);
             }
 
             return true;
@@ -97,9 +97,9 @@ namespace Orientdb.Net
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="OrintdbDynamicValue"/> with the specified name.
+        /// Gets or sets the <see cref="OrientdbDynamicValue"/> with the specified name.
         /// </summary>
-        /// <value>A <see cref="OrintdbDynamicValue"/> instance containing a value.</value>
+        /// <value>A <see cref="OrientdbDynamicValue"/> instance containing a value.</value>
         public dynamic this[string name]
         {
             get
@@ -109,7 +109,7 @@ namespace Orientdb.Net
                 dynamic member;
                 if (!dictionary.TryGetValue(name, out member))
                 {
-                    member = new OrintdbDynamicValue(null);
+                    member = new OrientdbDynamicValue(null);
                 }
 
                 return member;
@@ -118,7 +118,7 @@ namespace Orientdb.Net
             {
                 name = GetNeutralKey(name);
 
-                dictionary[name] = value is OrintdbDynamicValue ? value : new OrintdbDynamicValue(value);
+                dictionary[name] = value is OrientdbDynamicValue ? value : new OrientdbDynamicValue(value);
             }
         }
 
@@ -311,7 +311,7 @@ namespace Orientdb.Net
         private static KeyValuePair<string, dynamic> GetDynamicKeyValuePair(KeyValuePair<string, dynamic> item)
         {
             var dynamicValueKeyValuePair =
-                new KeyValuePair<string, dynamic>(item.Key, new OrintdbDynamicValue(item.Value));
+                new KeyValuePair<string, dynamic>(item.Key, new OrientdbDynamicValue(item.Value));
             return dynamicValueKeyValuePair;
         }
 

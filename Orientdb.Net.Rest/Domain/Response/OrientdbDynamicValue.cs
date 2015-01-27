@@ -12,7 +12,7 @@ using Microsoft.CSharp.RuntimeBinder;
 namespace Orientdb.Net
 // ReSharper restore CheckNamespace
 {
-    public class OrintdbDynamicValue : DynamicObject, IEquatable<OrintdbDynamicValue>, IConvertible
+    public class OrientdbDynamicValue : DynamicObject, IEquatable<OrientdbDynamicValue>, IConvertible
     {
         internal readonly object value;
 
@@ -28,7 +28,7 @@ namespace Orientdb.Net
         {
             if (!this.HasValue)
             {
-                result = new OrintdbDynamicValue(null);
+                result = new OrientdbDynamicValue(null);
                 return true;
             }
 
@@ -36,24 +36,24 @@ namespace Orientdb.Net
             object r;
             if (d != null && d.TryGetValue(name, out r))
             {
-                result = new OrintdbDynamicValue(r);
+                result = new OrientdbDynamicValue(r);
                 return true;
             }
             var x = this.Value as IDynamicMetaObjectProvider;
             if (x != null)
             {
                 var dm = GetDynamicMember(this.Value, name);
-                result = new OrintdbDynamicValue(dm);
+                result = new OrientdbDynamicValue(dm);
                 return true;
             }
             var ds = this.Value as IDictionary;
             if (ds != null && ds.Contains(name))
             {
-                result = new OrintdbDynamicValue(ds[name]);
+                result = new OrientdbDynamicValue(ds[name]);
                 return true;
             }
 
-            result = new OrintdbDynamicValue(this.Value);
+            result = new OrientdbDynamicValue(this.Value);
             return true;
         }
 
@@ -64,36 +64,36 @@ namespace Orientdb.Net
             return callsite.Target(callsite, obj);
         }
 
-        public OrintdbDynamicValue this[string name]
+        public OrientdbDynamicValue this[string name]
         {
             get
             {
                 object r;
                 Dispatch(out r, name);
-                return (OrintdbDynamicValue)r;
+                return (OrientdbDynamicValue)r;
             }
         }
 
-        public OrintdbDynamicValue this[int i]
+        public OrientdbDynamicValue this[int i]
         {
             get
             {
                 if (!this.HasValue)
-                    return new OrintdbDynamicValue(null);
+                    return new OrientdbDynamicValue(null);
                 var l = this.Value as IList;
                 if (l != null && l.Count - 1 >= i)
                 {
-                    return new OrintdbDynamicValue(l[i]);
+                    return new OrientdbDynamicValue(l[i]);
                 }
-                return new OrintdbDynamicValue(null);
+                return new OrientdbDynamicValue(null);
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrintdbDynamicValue"/> class.
+        /// Initializes a new instance of the <see cref="OrientdbDynamicValue"/> class.
         /// </summary>
         /// <param name="value">The value to store in the instance</param>
-        public OrintdbDynamicValue(object value)
+        public OrientdbDynamicValue(object value)
         {
             this.value = value;
         }
@@ -195,7 +195,7 @@ namespace Orientdb.Net
             return defaultValue;
         }
 
-        public static bool operator ==(OrintdbDynamicValue dynamicValue, object compareValue)
+        public static bool operator ==(OrientdbDynamicValue dynamicValue, object compareValue)
         {
             if (dynamicValue.value == null && compareValue == null)
             {
@@ -205,7 +205,7 @@ namespace Orientdb.Net
             return dynamicValue.value != null && dynamicValue.value.Equals(compareValue);
         }
 
-        public static bool operator !=(OrintdbDynamicValue dynamicValue, object compareValue)
+        public static bool operator !=(OrientdbDynamicValue dynamicValue, object compareValue)
         {
             return !(dynamicValue == compareValue);
         }
@@ -216,8 +216,8 @@ namespace Orientdb.Net
         /// </summary>
         /// <returns><c>true</c> if the current object is equal to the <paramref name="compareValue"/> parameter; otherwise, <c>false</c>.
         /// </returns>
-        /// <param name="compareValue">An <see cref="OrintdbDynamicValue"/> to compare with this instance.</param>
-        public bool Equals(OrintdbDynamicValue compareValue)
+        /// <param name="compareValue">An <see cref="OrientdbDynamicValue"/> to compare with this instance.</param>
+        public bool Equals(OrientdbDynamicValue compareValue)
         {
             if (ReferenceEquals(null, compareValue))
             {
@@ -230,8 +230,8 @@ namespace Orientdb.Net
         /// <summary>
         /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="object"/>.
         /// </summary>
-        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="OrintdbDynamicValue"/>; otherwise, <c>false</c>.</returns>
-        /// <param name="compareValue">The <see cref="object"/> to compare with the current <see cref="OrintdbDynamicValue"/>.</param>
+        /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current <see cref="OrientdbDynamicValue"/>; otherwise, <c>false</c>.</returns>
+        /// <param name="compareValue">The <see cref="object"/> to compare with the current <see cref="OrientdbDynamicValue"/>.</param>
         public override bool Equals(object compareValue)
         {
             if (ReferenceEquals(null, compareValue))
@@ -247,7 +247,7 @@ namespace Orientdb.Net
                 return true;
             }
 
-            return compareValue.GetType() == typeof(OrintdbDynamicValue) && this.Equals((OrintdbDynamicValue)compareValue);
+            return compareValue.GetType() == typeof(OrientdbDynamicValue) && this.Equals((OrientdbDynamicValue)compareValue);
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Orientdb.Net
             }
 
             var convert =
-                Binder.Convert(CSharpBinderFlags.None, arg.GetType(), typeof(OrintdbDynamicValue));
+                Binder.Convert(CSharpBinderFlags.None, arg.GetType(), typeof(OrientdbDynamicValue));
 
             if (!TryConvert((ConvertBinder)convert, out resultOfCast))
             {
@@ -362,7 +362,7 @@ namespace Orientdb.Net
             return this.value == null ? base.ToString() : Convert.ToString(this.value);
         }
 
-        public static implicit operator bool(OrintdbDynamicValue dynamicValue)
+        public static implicit operator bool(OrientdbDynamicValue dynamicValue)
         {
             if (!dynamicValue.HasValue)
             {
@@ -383,14 +383,14 @@ namespace Orientdb.Net
             return true;
         }
 
-        public static implicit operator string(OrintdbDynamicValue dynamicValue)
+        public static implicit operator string(OrientdbDynamicValue dynamicValue)
         {
             return dynamicValue.HasValue
                        ? Convert.ToString(dynamicValue.value)
                        : null;
         }
 
-        public static implicit operator int(OrintdbDynamicValue dynamicValue)
+        public static implicit operator int(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value.GetType().IsValueType)
             {
@@ -400,7 +400,7 @@ namespace Orientdb.Net
             return int.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator Guid(OrintdbDynamicValue dynamicValue)
+        public static implicit operator Guid(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value is Guid)
             {
@@ -410,7 +410,7 @@ namespace Orientdb.Net
             return Guid.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator DateTime(OrintdbDynamicValue dynamicValue)
+        public static implicit operator DateTime(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value is DateTime)
             {
@@ -420,7 +420,7 @@ namespace Orientdb.Net
             return DateTime.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator TimeSpan(OrintdbDynamicValue dynamicValue)
+        public static implicit operator TimeSpan(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value is TimeSpan)
             {
@@ -430,7 +430,7 @@ namespace Orientdb.Net
             return TimeSpan.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator long(OrintdbDynamicValue dynamicValue)
+        public static implicit operator long(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value.GetType().IsValueType)
             {
@@ -440,7 +440,7 @@ namespace Orientdb.Net
             return long.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator float(OrintdbDynamicValue dynamicValue)
+        public static implicit operator float(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value.GetType().IsValueType)
             {
@@ -450,7 +450,7 @@ namespace Orientdb.Net
             return float.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator decimal(OrintdbDynamicValue dynamicValue)
+        public static implicit operator decimal(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value.GetType().IsValueType)
             {
@@ -460,7 +460,7 @@ namespace Orientdb.Net
             return decimal.Parse(dynamicValue.ToString());
         }
 
-        public static implicit operator double(OrintdbDynamicValue dynamicValue)
+        public static implicit operator double(OrientdbDynamicValue dynamicValue)
         {
             if (dynamicValue.value.GetType().IsValueType)
             {
