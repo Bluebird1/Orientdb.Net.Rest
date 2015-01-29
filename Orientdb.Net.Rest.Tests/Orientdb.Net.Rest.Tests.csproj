@@ -52,6 +52,7 @@
     <Compile Include="API\OrientDbClient-Command.Tests.cs" />
     <Compile Include="API\OrientDbClient-Database.Tests.cs" />
     <Compile Include="API\OrientDbClient-Server.Tests.cs" />
+    <Compile Include="API\OrientDbClient-Query.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
