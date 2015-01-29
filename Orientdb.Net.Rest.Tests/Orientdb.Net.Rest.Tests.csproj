@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\DatabaseTests.cs" />
+    <Compile Include="API\OrientDbClient-Command.Tests.cs" />
+    <Compile Include="API\OrientDbClient-Database.Tests.cs" />
+    <Compile Include="API\OrientDbClient-Server.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
