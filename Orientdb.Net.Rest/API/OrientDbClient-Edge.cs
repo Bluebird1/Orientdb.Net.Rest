@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using Orientdb.Net.API;
 
@@ -9,7 +9,7 @@ namespace Orientdb.Net
 {
     public partial class OrientdbClient
     {
-        public bool InsertEdge<T>(string database, T document, Func<CreateEdgeQueryParameters, CreateEdgeQueryParameters> requestParameters = null)
+        public bool InsertEdge<T>(string database, ref T document, Func<CreateEdgeQueryParameters, CreateEdgeQueryParameters> requestParameters = null)
         {
             database.ThrowIfNullOrEmpty("database");
             document.ThrowIfNull("document");
@@ -48,8 +48,11 @@ namespace Orientdb.Net
             if (command.EndsWith(","))
                 command = command.Remove(command.Length - 1);
 
-            OrientdbResponse<DynamicDictionary> response = Command(command, database, CommandLanguage.Sql);
-            return response.Success;
+            OrientdbResponse<BaseResult<T>> request = Command<BaseResult<T>>(command, database, CommandLanguage.Sql);
+            if (request.Success)
+                document = request.Response.Result.First();
+
+            return request.Success;
         }
     }
 }

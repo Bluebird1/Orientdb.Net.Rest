@@ -109,12 +109,15 @@ namespace Orient.Test.Unit.API
 
             var livesin = new Livesin {Since = DateTime.Now};
 
-            bool result = _orientdbClient.InsertEdge(_databaseName, livesin,
+            bool result = _orientdbClient.InsertEdge(_databaseName, ref livesin,
                 p =>
                     p.FromQuery("select * from Person where Name = 'Carey'")
                         .ToQuery("select from Country where Name = 'Westminster'"));
 
             Assert.IsTrue(result);
+            Assert.IsNotNull(livesin.ORID);
+            Assert.IsNotNull(livesin.InCountry);
+            Assert.IsNotNull(livesin.OutPerson);
         }
     }
 }
