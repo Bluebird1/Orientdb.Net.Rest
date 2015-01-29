@@ -55,9 +55,11 @@
     <Compile Include="API\Database\OrientServer.cs" />
     <Compile Include="API\Database\Response\ListDatabaseResponse.cs" />
     <Compile Include="API\Document\OrientLinkBag.cs" />
+    <Compile Include="API\Edge\Parameter\CreateEdgeQueryParameters.cs" />
     <Compile Include="API\OrientDbClient-Classes.cs" />
     <Compile Include="API\OrientDbClient-Command.cs" />
     <Compile Include="API\OrientDbClient-Database.cs" />
+    <Compile Include="API\OrientDbClient-Edge.cs" />
     <Compile Include="API\OrientDbClient-Query.cs" />
     <Compile Include="API\OrientDbClient-Server.cs" />
     <Compile Include="API\OrientDbClient-Vertex.cs" />
@@ -177,6 +179,7 @@
   <ItemGroup>
     <Folder Include="API\Command\Parameter\" />
     <Folder Include="API\Database\Parameter\" />
+    <Folder Include="API\Edge\Response\" />
     <Folder Include="API\Query\Parameter\" />
     <Folder Include="API\Query\Response\" />
     <Folder Include="API\Server\Parameter\" />
