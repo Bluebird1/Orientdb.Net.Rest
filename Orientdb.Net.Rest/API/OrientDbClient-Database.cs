@@ -55,14 +55,15 @@ namespace Orientdb.Net
         /// </summary>
         /// <param name="name">database name</param>
         /// <param name="storageType">storage type</param>
-        public ICreateDatabaseResponse CreateDatabase(string name, StorageType storageType)
+        /// <param name="databaseType">can be document or graph.</param>
+        public ICreateDatabaseResponse CreateDatabase(string name, StorageType storageType, DatabaseType databaseType = DatabaseType.Graph)
         {
             name.ThrowIfNullOrEmpty("name");
 
             if (DatabaseExist(name))
                 throw new Exception("The database already exists.");
 
-            string url = "database/{0}/{1}".F(Encoded(name), Encoded(storageType.ToString().ToLower()));
+            string url = "database/{0}/{1}/{2}".F(Encoded(name), Encoded(storageType.ToString().ToLower()), Encoded(databaseType.ToString().ToLower()));
             return DoRequest<CreateDatabaseResponse>("POST", url).Response;
         }
 

@@ -61,6 +61,7 @@
     <Compile Include="API\OrientDbClient-Query.cs" />
     <Compile Include="API\OrientDbClient-Server.cs" />
     <Compile Include="API\OrientDbClient-Vertex.cs" />
+    <Compile Include="API\Server\DatabaseType.cs" />
     <Compile Include="API\Server\OrienConnection.cs" />
     <Compile Include="API\Server\Storage.cs" />
     <Compile Include="ConnectionPool\Definition\IConnectionPool.cs" />
