@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
 using Orientdb.Net.API;
+using Orientdb.Net.Serialization;
 
 // ReSharper disable CheckNamespace
 
@@ -15,10 +17,21 @@ namespace Orientdb.Net
         {
             database.ThrowIfNullOrEmpty("database");
             documentList.ThrowIfNull("document");
-            return documentList.All(value => InsertVertex(database, value));
+            
+            var resultList = new List<T>();
+            foreach (T document in documentList)
+            {
+                T value = document;
+                if (InsertVertex(database, ref value))
+                    resultList.Add(value);
+            }
+            documentList.Clear();
+            documentList.AddRange(resultList);
+
+            return true;
         }
 
-        public bool InsertVertex<T>(string database, T document)
+        public bool InsertVertex<T>(string database, ref T document)
         {
             database.ThrowIfNullOrEmpty("database");
             document.ThrowIfNull("document");
@@ -45,8 +58,12 @@ namespace Orientdb.Net
             if (command.EndsWith(","))
                 command = command.Remove(command.Length - 1);
 
-            OrientdbResponse<DynamicDictionary> response = Command(command, database, CommandLanguage.Sql);
-            return response.Success;
+
+            OrientdbResponse<BaseResult<T>> request = Command<BaseResult<T>>(command, database, CommandLanguage.Sql);
+            if (request.Success)
+                document = request.Response.Result.First();
+            
+            return request.Success;
         }
 
         public bool DeleteVertex<T>(string database, T document)

@@ -61,8 +61,9 @@ namespace Orient.Test.Unit.API
         public void InsertVertexDocumentTest()
         {
             var person = new Actor { Name = "Carey", Surname = "Mulligan", Gender = "female" };
-            bool insertVertexDocument = _orientdbClient.InsertVertex<Actor>(_databaseName, person);
+            bool insertVertexDocument = _orientdbClient.InsertVertex<Actor>(_databaseName, ref person);
             Assert.IsTrue(insertVertexDocument);
+            Assert.IsNotNull(person.ORID);
         }
 
         [Test]
@@ -82,6 +83,11 @@ namespace Orient.Test.Unit.API
             };
             bool insertVertexDocument = _orientdbClient.InsertVertex<Actor>(_databaseName, persons);
             Assert.IsTrue(insertVertexDocument);
+
+            foreach (Actor person in persons)
+            {
+                Assert.IsNotNull(person.ORID);
+            }
 
 
             BaseResult<Actor> response = _orientdbClient.BaseResultGetQuery<Actor>("select * from Actor", _databaseName, CommandLanguage.Sql);
