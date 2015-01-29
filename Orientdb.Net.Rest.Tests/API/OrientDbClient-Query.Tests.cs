@@ -64,8 +64,7 @@ namespace Orient.Test.Unit.API
             BaseResult<Foo> response = _orientdbClient.BaseResultGetQuery<Foo>("select * from Foo", _databaseName, CommandLanguage.Sql);
             Assert.IsNotNull(response);
         }
-
-
+        
         internal class Foo : ODocument
         {
             public int FooInt { get; set; }
