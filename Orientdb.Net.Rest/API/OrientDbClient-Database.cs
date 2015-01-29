@@ -4,12 +4,16 @@ using System.Linq;
 using Orientdb.Net.API;
 
 // ReSharper disable CheckNamespace
-
 namespace Orientdb.Net
 // ReSharper restore CheckNamespace
 {
     public partial class OrientdbClient
     {
+        /// <summary>
+        /// Connect to a remote server using basic authentication.
+        /// </summary>
+        /// <param name="name">database name</param>
+        /// <see cref="http://www.orientechnologies.com/docs/last/orientdb.wiki/OrientDB-REST.html#connect"/>
         public bool Connect(string name)
         {
             name.ThrowIfNullOrEmpty("name");
@@ -20,6 +24,10 @@ namespace Orientdb.Net
             return request.HttpStatusCode == 204;
         }
 
+        /// <summary>
+        /// Disconnect from remote server
+        /// </summary>
+        /// <see cref="http://www.orientechnologies.com/docs/last/orientdb.wiki/OrientDB-REST.html#disconnect"/>
         public bool Disconnect()
         {
             const string url = "disconnect";
@@ -28,6 +36,13 @@ namespace Orientdb.Net
             return request.HttpStatusCode == 401;
         }
 
+        /// <summary>
+        /// Retrieve all the information about a database.
+        /// </summary>
+        /// <param name="name">database name</param>
+        /// <remarks>
+        /// Syntax: http://&lt;server&gt;:[&lt;port&gt;]/database/&lt;database&gt;
+        /// </remarks>
         public IGetDatabasePropertiesResponse GetDatabaseProperties(string name)
         {
             name.ThrowIfNullOrEmpty("name");
@@ -35,6 +50,11 @@ namespace Orientdb.Net
             return DoRequest<GetDatabasePropertiesResponse>("GET", url).Response;
         }
 
+        /// <summary>
+        /// Create a new database. Requires additional authentication to the server.
+        /// </summary>
+        /// <param name="name">database name</param>
+        /// <param name="storageType">storage type</param>
         public ICreateDatabaseResponse CreateDatabase(string name, StorageType storageType)
         {
             name.ThrowIfNullOrEmpty("name");
@@ -46,12 +66,22 @@ namespace Orientdb.Net
             return DoRequest<CreateDatabaseResponse>("POST", url).Response;
         }
 
+        /// <summary>
+        /// Retrieves the available databases.
+        /// </summary>
+        /// <remarks>
+        /// Syntax: http://&lt;server&gt;:&lt;port&gt;/listDatabases
+        /// </remarks>
         public IListDatabaseResponse ListDatabase()
         {
             const string url = "listDatabases";
             return DoRequest<ListDatabaseResponse>("GET", url).Response;
         }
 
+        /// <summary>
+        /// Check if database exist
+        /// </summary>
+        /// <param name="name">database name</param>
         public bool DatabaseExist(string name)
         {
             name.ThrowIfNullOrEmpty("name");
@@ -62,6 +92,13 @@ namespace Orientdb.Net
                     database => String.Equals(database, name, StringComparison.CurrentCultureIgnoreCase));
         }
 
+        /// <summary>
+        /// Drop a database. Requires additional authentication to the server.
+        /// </summary>
+        /// <param name="name">database name</param>
+        /// <remarks>
+        /// Syntax: http://&lt;server&gt;:[&lt;port&gt;]/database/&lt;databaseName&gt;
+        /// </remarks>
         public bool DeteteDatabase(string name)
         {
             name.ThrowIfNullOrEmpty("name");
