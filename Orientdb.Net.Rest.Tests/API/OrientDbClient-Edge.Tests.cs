@@ -119,5 +119,25 @@ namespace Orient.Test.Unit.API
             Assert.IsNotNull(livesin.InCountry);
             Assert.IsNotNull(livesin.OutPerson);
         }
+
+        [Test]
+        public void InsertEdgeByRidTest()
+        {
+            var person = new Person {Name = "Carey", Surname = "Mulligan", Gender = "female"};
+            var country = new Country {Name = "Westminster"};
+            var livesin = new Livesin { Since = DateTime.Now };
+
+            _orientdbClient.InsertVertex(_databaseName, ref person);
+            _orientdbClient.InsertVertex(_databaseName, ref country);
+
+            bool result = _orientdbClient.InsertEdge(_databaseName, ref livesin, ref person, ref country);
+
+            Assert.IsTrue(result);
+            Assert.IsNotNull(livesin.ORID);
+            Assert.IsNotNull(livesin.InCountry);
+            Assert.IsNotNull(livesin.OutPerson);
+        }
+
+
     }
 }

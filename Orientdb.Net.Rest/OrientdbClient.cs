@@ -40,7 +40,7 @@ namespace Orientdb.Net
         /// <param name="path">The path of the the url that you would like to hit</param>
         /// <param name="data">The body of the request, string and byte[] are posted as is other types will be serialized to JSON</param>
         /// <param name="requestParameters">Optionally configure request specific timeouts, headers</param>
-        /// <returns>An ElasticsearchResponse of T where T represents the JSON response body</returns>
+        /// <returns>An OrientdbResponse of T where T represents the JSON response body</returns>
         public OrientdbResponse<T> DoRequest<T>(string method, string path, object data = null,
             IRequestParameters requestParameters = null)
         {
@@ -56,7 +56,7 @@ namespace Orientdb.Net
         /// <param name="path">The path of the the url that you would like to hit</param>
         /// <param name="data">The body of the request, string and byte[] are posted as is other types will be serialized to JSON</param>
         /// <param name="requestParameters">Optionally configure request specific timeouts, headers</param>
-        /// <returns>A task of ElasticsearchResponse of T where T represents the JSON response body</returns>
+        /// <returns>A task of OrientdbResponse of T where T represents the JSON response body</returns>
         public Task<OrientdbResponse<T>> DoRequestAsync<T>(string method, string path, object data = null,
             IRequestParameters requestParameters = null)
         {
